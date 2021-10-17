@@ -90,6 +90,12 @@ max-width: 500px:
             border-radius: 7px;
         }
 
+.second .time {
+
+color: var(--color_2);
+
+
+}
         .comment {
             font-size: 10px;
             color: var(--color_1);
@@ -121,7 +127,8 @@ max-width: 500px:
     <div id="app">
         <ul id="items">
             <li v-for="item in items" :class="item.category" :key="item.id"
-                :data-id="item.id" class="">
+                :data-id="item.id" v-bind:class="{'second' :
+                    item.second}" >
                 <div class="first">
                     <span class="num">{{item.id}}</span>
                     <span class="title">{{item.title}}</span>
