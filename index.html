@@ -49,6 +49,7 @@
             position: relative;
             color: var(--color_1);
             background: #ff9e9e1e;
+            transition: .5s;
         }
 
         li.second {
@@ -96,6 +97,26 @@
             border-radius: 7px;
         }
 
+        li.executing .time {
+            color: #fff;
+            font-weight: bold;
+            background-color: var(--color_1);
+            border: none;
+        }
+
+        li.executing.second .time {
+            background-color: var(--color_2);
+        }
+
+        .percent {
+            color: currentColor;
+            position: absolute;
+            right: 10px;
+            top: 40px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
         .comment {
             font-size: 16px;
             color: currentColor;
@@ -112,14 +133,15 @@
             border: none;
             font-size: 50px;
             color: #fff;
+            transition: .5s;
         }
 
         .second button {
             background-color: var(--color_2);
         }
 
-        .executing {
-            opacity: 0.8;
+        button.executing {
+            opacity: 0.7;
         }
 
         li.suspension {
@@ -131,6 +153,7 @@
             margin: auto;
             height: 100px;
             background: rgb(223, 223, 223);
+            margin-top: 10px;
         }
 
         .bar {
@@ -143,6 +166,21 @@
         .bar.second {
             background: var(--color_2);
         }
+
+        .percent_bar {
+            position: absolute;
+            bottom: -17px;
+            float: left;
+            width: 40px;
+            font-size: 10px;
+            color: var(--color_1);
+            text-align: left;
+        }
+
+        div.second .percent_bar {
+            left: 40px;
+            color: var(--color_2);
+        }
     </style>
 </head>
 
@@ -152,12 +190,14 @@
         <h1>最も重要なことにどれだけ集中しているかアプリ</h1>
         <ul id="items">
             <li v-for="item in items" :key="item.id" :data-id="item.id"
-                v-bind:class="{second : item.second, suspension :
-                !item.executing}">
+                v-bind:class="{ second : item.second, suspension :
+                !item.executing, 'executing' :
+                item.executing }">
                 <div class=" top">
                     <span class="num">{{item.id + 1}}</span>
                     <span class="title">{{item.title}}</span>
                     <span class="time">{{item.timeStr}}</span>
+                    <span class="percent">{{item.percent}} %</span>
                 </div>
                 <span class="comment">{{item.comment}}</span>
                 <button :data-btn-id="item.id" v-bind:class="{'executing' :
@@ -168,10 +208,12 @@
         </ul>
         <div id="bar">
             <div v-for="item in items" :key="item.id" :data-id="item.id"
-                class="bar" v-bind:class="{second : item.second}"
+                class="bar" v-bind:class="{ second : item.second }"
                 v-bind:style="{ width: item.width + '%' }">
+                <span class='percent_bar'>{{ item.percent }} %</span>
             </div>
         </div>
+
         <!-- <img src="img.png" alt=""> -->
     </div>
 
