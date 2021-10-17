@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>集中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color_1: #ff9e9e;
+            --color_2: #318ffc;
+        }
+
+        body {
+            text-align: center;
+            background: rgb(255, 255, 255);
+            font-family: sans-serif;
+        }
+
+        img {
+            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
+        }
+
+
+
+        /* ここから */
+        #app {
+            width: 40%;
+            margin: auto;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            background: #ff9e9e35;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        li:nth-of-type(2) {
+            background: #3190fc41;
+        }
+
+        div.first {
+            display: flex;
+            height: 40px;
+            column-gap: 10px;
+            align-items: center;
+        }
+
+        div.first span {}
+
+        .num {
+            width: 30px;
+            height: 30px;
+            background: var(--color_1);
+            border-radius: 30px;
+            text-align: center;
+            vertical-align: center;
+            line-height: 30px;
+            color: #fff;
+            display: inline-block;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--color_1);
+        }
+
+        .time {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            border: 2px solid var(--color_1);
+            color: var(--color_1);
+            padding: 0px 10px;
+            border-radius: 7px;
+        }
+
+        .comment {
+            font-size: 10px;
+            color: var(--color_1);
+            display: inline-block;
+            width: 100%;
+        }
+
+        button {
+            width: 150px;
+            height: 150px;
+            border-radius: 150px;
+            background: var(--color_1);
+            border: none;
+            color: #fff;
+            font-size: 50px;
+        }
+
+        ul button:nth-of-type(2) {
+            background: var(--color_2);
+        }
+
+        .executing {
+            opacity: 0.3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul id="items">
+            <li v-for="item in items" :class="item.category" :key="item.id"
+                :data-id="item.id" class="">
+                <div class="first">
+                    <span class="num">{{item.id}}</span>
+                    <span class="title">{{item.title}}</span>
+                    <span class="time">2:10</span>
+                </div>
+                <span class="comment">{{item.comment}}</span>
+                <button
+                    v-bind:class="{'executing' :
+                    item.executing}">{{item.executing ? 'Stop' : 'Start'}}</button>
+
+                <!-- 
+                <a :href=" item.url" :target="item.title"><img
+                        :src="'img/' + item.image + '.jpg'"></a>
+                    <a :href="item.url" :target="item.title"
+                        v-bind:class="{'done' : item.done}">
+                        {{ item.title }}
+                    </a> -->
+            </li>
+        </ul>
+        <img src="img.png" alt="">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./data.js"></script>
+    <script>
+        const setFillHeight = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        // 画面のサイズ変動があった時に高さを再計算する
+        window.addEventListener('resize', setFillHeight);
+
+        // 初期化
+        setFillHeight();
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                items: exItems,
+            },
+        });
+    </script>
+</body>
+
+</html>
