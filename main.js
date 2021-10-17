@@ -2,11 +2,7 @@ const setFillHeight = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
-
-// 画面のサイズ変動があった時に高さを再計算する
 window.addEventListener('resize', setFillHeight);
-
-// 初期化
 setFillHeight();
 
 let app = new Vue({
@@ -61,7 +57,6 @@ let app = new Vue({
         },
         startCount: function(btn_id) {
             this.timer = setInterval(this.displayTime, 1000, btn_id);
-            console.log(this.timer);
         },
         displayTime: function(btn_id) {
             var now = new Date();
@@ -69,10 +64,9 @@ let app = new Vue({
             this.prevTime = now;
             var time = this.items[btn_id].time;
             time += diff;
-            console.log(time);
             this.items[btn_id].time = time;
             this.items[btn_id].timeStr = this.dateString(time);
-            this.items[btn_id].width = (time * 100 / 5184000);
+            this.items[btn_id].width = (time / 5184000);
         },
         stopCount: function() {
             clearInterval(this.timer);
