@@ -12,23 +12,143 @@
             padding: 0;
         }
 
-        body {
-            text-align: center;
-            background: rgb(55, 55, 55);
+        :root {
+            --color_1: #ff9e9e;
+            --color_2: #318ffc;
         }
 
+        body {
+            text-align: center;
+            background: rgb(255, 255, 255);
+            font-family: sans-serif;
+        }
 
         img {
             height: 100vh;
-            /* Fallback */
             height: calc(var(--vh, 1vh) * 100);
-            /* height: 100vh; */
+        }
+
+        /* ここから */
+        #app {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            position: relative;
+            color: var(--color_1);
+            background: #ff9e9e1e;
+        }
+
+        li.second {
+            color: var(--color_2);
+            background: #3190fc1e;
+        }
+
+        div.top {
+            display: flex;
+            height: 40px;
+            column-gap: 10px;
+            align-items: center;
+            color: inherit;
+        }
+
+        .num {
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            background-color: var(--color_1);
+            border-radius: 30px;
+            text-align: center;
+            vertical-align: center;
+            line-height: 30px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        .second .num {
+            background-color: var(--color_2);
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .time {
+            color: currentColor;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            border: 2px solid currentColor;
+            padding: 0px 10px;
+            border-radius: 7px;
+        }
+
+        .comment {
+            font-size: 10px;
+            color: currentColor;
+            display: inline-block;
+            width: 100%;
+        }
+
+        button {
+            width: 150px;
+            height: 150px;
+            border-radius: 150px;
+            background-color: var(--color_1);
+            border: none;
+            font-size: 50px;
+            color: #fff;
+        }
+
+        .second button {
+            background-color: var(--color_2);
+        }
+
+        .executing {
+            opacity: 0.3;
         }
     </style>
 </head>
 
 <body>
-    <img src="img.png" alt="">
+    <div id="app">
+        <ul id="items">
+            <li v-for="item in items" :key="item.id" :data-id="item.id"
+                v-bind:class="{'second' : item.second}">
+                <div class="top">
+                    <span class="num">{{item.id}}</span>
+                    <span class="title">{{item.title}}</span>
+                    <span class="time">{{item.time}}</span>
+                </div>
+                <span class="comment">{{item.comment}}</span>
+                <button
+                    v-bind:class="{'executing' :
+                    !item.executing}">{{item.executing ? 'Stop' : 'Start'}}</button>
+
+                <!-- 
+                <a :href=" item.url" :target="item.title"><img
+                        :src="'img/' + item.image + '.jpg'"></a>
+                    <a :href="item.url" :target="item.title"
+                        v-bind:class="{'done' : item.done}">
+                        {{ item.title }}
+                    </a> -->
+            </li>
+        </ul>
+        <img src="img.png" alt="">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="./data.js"></script>
     <script>
         const setFillHeight = () => {
             const vh = window.innerHeight * 0.01;
@@ -40,6 +160,13 @@
 
         // 初期化
         setFillHeight();
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                items: exItems,
+            },
+        });
     </script>
 </body>
 
