@@ -4,14 +4,16 @@ var exItems = [
     title: '仏道',
     comment: '心を清らかにして安穏に達する',
     time: '2:10',
-    executing: true
+    executing: true,
+second : false
   },
   {
     id : 2,
     title: 'レバリ',
     comment: '世の中の問題に貢献する',
     time: '',
-    executing: false
+    executing: false,
+second : true
   },
 ];
 
