@@ -21,7 +21,8 @@ let app = new Vue({
         for (let index = 0; index < this.items.length; index++) {
             const item = this.items[index];
             item.timeStr = this.dateString(item.time);
-            item.width = (item.time * 100 / 5184000);
+            item.width = (item.time*100 / 86400000);
+            // 86400000
         }
     },
     // `methods` オブジェクトの下にメソッドを定義する
