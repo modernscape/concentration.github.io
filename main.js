@@ -19,10 +19,11 @@ let app = new Vue({
     },
     created: function() {
         console.log('created!');
-        var time_0 = this.items[0].time;
-        this.items[0].timeStr = this.dateString(time_0); 
-        var time_1 = this.items[1].time;
-        this.items[1].timeStr = this.dateString(time_1);
+        for (let index = 0; index < this.items.length; index++) {
+            const item = this.items[index];
+            item.timeStr = this.dateString(item.time);
+            item.width = (item.time * 100 / 5184000);
+        }
     },
     // `methods` オブジェクトの下にメソッドを定義する
     methods: {
@@ -72,10 +73,10 @@ let app = new Vue({
             console.log(time);
             this.items[btn_id].time = time;
             this.items[btn_id].timeStr = this.dateString(time);
+            this.items[btn_id].width = (time * 100 / 5184000);
         },
         stopCount: function() {
             clearInterval(this.timer);
-        }
-        
+        },        
     }
 });

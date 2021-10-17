@@ -7,6 +7,7 @@ var exItems = [
     timeStr: '00:00:00',
     executing: false,
     second : false,
+    width : 0
   },
   {
     id : 1,
@@ -15,7 +16,8 @@ var exItems = [
     time: 0,
     timeStr: '00:00:00',
     executing: false,
-    second : true
+    second : true,
+    width : 0
   },
 ];
 
