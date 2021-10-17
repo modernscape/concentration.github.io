@@ -18,7 +18,6 @@ let app = new Vue({
         activeBtn: undefined // undefined or 0 or 1
     },
     created: function() {
-        console.log('created!');
         for (let index = 0; index < this.items.length; index++) {
             const item = this.items[index];
             item.timeStr = this.dateString(item.time);
