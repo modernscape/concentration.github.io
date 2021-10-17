@@ -126,7 +126,7 @@ color: var(--color_2);
 <body>
     <div id="app">
         <ul id="items">
-            <li v-for="item in items" :class="item.category" :key="item.id"
+            <li v-for="item in items" :key="item.id"
                 :data-id="item.id" v-bind:class="{'second' :
                     item.second}" >
                 <div class="first">
