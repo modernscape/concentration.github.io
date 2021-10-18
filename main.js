@@ -17,7 +17,7 @@ let app = new Vue({
         for (let index = 0; index < this.items.length; index++) {
             const item = this.items[index];
             item.timeStr = this.dateString(item.time);
-            item.width = (item.time*100 / 86400000);
+            item.width = (item.time / 86400000)*100;
         }
     },
     // `methods` オブジェクトの下にメソッドを定義する
@@ -66,7 +66,7 @@ let app = new Vue({
             time += diff;
             this.items[btn_id].time = time;
             this.items[btn_id].timeStr = this.dateString(time);
-            var w = (time / 5184000);
+            var w =  (time / 86400000)*100;
             this.items[btn_id].width = w;
             this.items[btn_id].percent = w.toFixed(2);
         },
