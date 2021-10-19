@@ -68,7 +68,7 @@ let app = new Vue({
             this.items[btn_id].timeStr = this.dateString(time);
             var w =  (time / 86400000)*100;
             this.items[btn_id].width = w;
-            this.items[btn_id].percent = w.toFixed(2);
+            this.items[btn_id].percent = w.toFixed(1);
         },
         stopCount: function() {
             clearInterval(this.timer);

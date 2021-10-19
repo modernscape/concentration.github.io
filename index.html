@@ -169,17 +169,25 @@
 
         .percent_bar {
             position: absolute;
-            bottom: -17px;
-            float: left;
-            width: 40px;
+            bottom: -14px;
+            left: 0;
+            min-width: 40px;
             font-size: 10px;
             color: var(--color_1);
             text-align: left;
         }
 
         div.second .percent_bar {
-            left: 40px;
             color: var(--color_2);
+        }
+
+        .str-24h {
+            position: absolute;
+            top: 1px;
+            right: 3px;
+            text-align: right;
+            font-size: 10px;
+            color: rgb(171, 171, 171);
         }
     </style>
 </head>
@@ -212,6 +220,7 @@
                 v-bind:style="{ width: item.width + '%' }">
                 <span class='percent_bar'>{{ item.percent }} %</span>
             </div>
+            <span class="str-24h">24h</span>
         </div>
 
         <!-- <img src="img.png" alt=""> -->
